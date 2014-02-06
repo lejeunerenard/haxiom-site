@@ -1,0 +1,45 @@
+      .profile-pic {
+         width: 250px;
+         margin-left: 25px;
+         margin-top: -25px;
+      }
+      li {
+         list-style: none;
+      }
+      /*
+      .social li {
+         float: left;
+         margin-right: 10px;
+      }
+      
+      */
+      .container.row-fluid {
+         margin-top: 50px;
+         max-width: 940px;
+      }
+      
+      @media only screen 
+and (max-width : 640px) {
+/* Styles */
+	      .pull-right, .pull-left {
+		      float:none;
+		      margin: auto;
+		      display: block;
+	      }
+	      
+	      .row-fluid [class*="span"] {
+		      float:none;
+		      width:100%;
+		      display: block;
+	      }
+	      
+	      .hero-unit {
+		      padding:20px;
+		      margin:0;
+	      }
+	      
+	      .hero-unit h1 {
+		      font-size: 2em;
+	      }
+	      
+      }
