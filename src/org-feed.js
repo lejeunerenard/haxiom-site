@@ -23,6 +23,17 @@ export default class OrgFeed {
     return fetch(apiURL + 'orgs/' + this.orgName + '/public_members')
     .then((response) => {
       return response.json()
+    }).then((usersJson) => {
+      // Check response
+      if (typeof usersJson !== Array) {
+        throw new Error('No public members returned')
+      }
+
+      return usersJson.map((user) => {
+        return new User({
+          name: user.login
+        })
+      })
     }).catch((err) => {
       console.error(err)
     })
@@ -30,14 +41,10 @@ export default class OrgFeed {
 
   getEvents () {
     this.getUsers().then((users) => {
-      users.forEach((userJson) => {
-        let user = new User({
-          name: userJson.login
-        })
-        user.getEvents().then((events) => {
-          this.events.push(events)
-        })
+      let allEvents = users.map((user) => {
+        user.getEvents()
       })
+      return Promise.all(allEvents)
     })
   }
 }
